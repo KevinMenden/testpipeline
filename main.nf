@@ -180,13 +180,13 @@ process get_software_versions {
 
     script:
     // TODO nf-core: Get all tools to print their version number here
-    """
+    '''
     echo $workflow.manifest.version > v_pipeline.txt
     echo $workflow.nextflow.version > v_nextflow.txt
     fastqc --version > v_fastqc.txt
     multiqc --version > v_multiqc.txt
     scrape_software_versions.py &> software_versions_mqc.yaml
-    """
+    '''
 }
 
 /*
@@ -207,9 +207,9 @@ process fastqc {
     file '*_fastqc.{zip,html}' into ch_fastqc_results
 
     script:
-    """
+    '''
     fastqc --quiet --threads $task.cpus $reads
-    """
+    '''
 }
 
 /*
